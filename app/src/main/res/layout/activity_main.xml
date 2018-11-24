@@ -15,42 +15,87 @@
         android:orientation="vertical"
         android:gravity="center">
 
+
         <TextView
-            android:id="@+id/textView_players"
+            android:id="@+id/textView_player1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="150dp"
             android:layout_marginTop="150dp"
             android:text=""
             android:textSize="20dp" />
 
         <TextView
-            android:id="@+id/rolls1"
+            android:id="@+id/points1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dp"
+            android:layout_marginRight="100dp"
             android:layout_marginTop="150dp"
-            android:text="Rolls: "
-            android:textSize="20dp"/>
+            android:text="5"
+            android:textSize="20dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/score1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="150dp"
+            android:text="105"
+            android:textSize="20dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/textView_player2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="150dp"
+            android:layout_marginTop="200dp"
+            android:text=""
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/points2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="200dp"
+            android:text="5"
+            android:textSize="20dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/score2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="200dp"
+            android:text="105"
+            android:textSize="20dp"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="250dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="240dp"
             android:layout_marginTop="300dp"
             android:clickable="true"
             android:onClick="onClick"
             android:textSize="150px"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:layout_marginRight="150dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginRight="130dp"
             android:layout_marginTop="300dp"
             android:clickable="true"
             android:onClick="onClick"
@@ -61,8 +106,8 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="250dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="240dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="300dp"
             android:clickable="true"
             android:onClick="onClick"
