@@ -10,17 +10,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private ArrayList<Player> players;
     Game game = new Game();
 
     private Dice dice1 = game.getDice1();
     private Dice dice2 = game.getDice2();
     private Dice dice3 = game.getDice3();
 
+    private Player player1;
+    private Player player2;
+
     private TextView mDiceTextView1;
     private TextView mDiceTextView2;
     private TextView mDiceTextView3;
-    private TextView mTextViewPlayers;
+    private TextView mTextViewPlayer1;
+    private TextView mTextViewPlayer2;
 
     private EditText mEditText;
 
@@ -32,12 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        players = new ArrayList<>();
-
         mDiceTextView1 = (TextView) findViewById(R.id.textView);
         mDiceTextView2 = (TextView) findViewById(R.id.textView2);
         mDiceTextView3 = (TextView) findViewById(R.id.textView3);
-        mTextViewPlayers = (TextView) findViewById(R.id.textView_players);
+        mTextViewPlayer1 = (TextView) findViewById(R.id.textView_player1);
+        mTextViewPlayer2 = (TextView) findViewById(R.id.textView_player2);
 
         mEditText = (EditText) findViewById(R.id.et_player);
 
@@ -87,23 +89,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.buttonAddPlayer:
-                if(players.size() < 2){
-                    Player player = new Player(mEditText.getText().toString());
-                    players.add(player);
+                if(player1 == null){
+                    player1 = new Player(mEditText.getText().toString());
                     mEditText.setText("");
-                    mTextViewPlayers.setText(this.getPlayers());
+                    mTextViewPlayer1.setText(player1.getName());
+                }else if(player2 == null){
+                    player2 = new Player(mEditText.getText().toString());
+                    mEditText.setText("");
+                    mTextViewPlayer2.setText(player2.getName());
                 }
                 break;
             default:
                 break;
         }
-    }
-
-    public String getPlayers(){
-        String out = "";
-        for(Player p: players){
-            out += p.getName() + "\n";
-        }
-        return out;
     }
 }
