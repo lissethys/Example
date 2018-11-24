@@ -11,16 +11,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private ArrayList<Player> players;
+    Game game = new Game();
 
-    private Dice dice1 = new Dice();
-    private Dice dice2 = new Dice();
-    private Dice dice3 = new Dice();
+    private Dice dice1 = game.getDice1();
+    private Dice dice2 = game.getDice2();
+    private Dice dice3 = game.getDice3();
 
     private TextView mDiceTextView1;
     private TextView mDiceTextView2;
     private TextView mDiceTextView3;
     private TextView mTextViewPlayers;
-
 
     private EditText mEditText;
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.button:
-                this.rollDices();
+                game.rollDices();
                 mDiceTextView1.setText("" + dice1.getDice());
                 mDiceTextView2.setText("" + dice2.getDice());
                 mDiceTextView3.setText("" + dice3.getDice());
@@ -96,18 +96,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             default:
                 break;
-        }
-    }
-
-    public void rollDices(){
-        if(!dice1.isStuck()){
-            dice1.rollDice();
-        }
-        if(!dice2.isStuck()){
-            dice2.rollDice();
-        }
-        if(!dice3.isStuck()){
-            dice3.rollDice();
         }
     }
 
