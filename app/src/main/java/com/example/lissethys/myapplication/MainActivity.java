@@ -19,25 +19,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mDiceTextView1;
     private TextView mDiceTextView2;
     private TextView mDiceTextView3;
+    private TextView mTextViewPlayers;
+
 
     private EditText mEditText;
 
     private Button mButton;
-
+    private Button mButtonPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        players = new ArrayList<>();
+
         mDiceTextView1 = (TextView) findViewById(R.id.textView);
         mDiceTextView2 = (TextView) findViewById(R.id.textView2);
         mDiceTextView3 = (TextView) findViewById(R.id.textView3);
+        mTextViewPlayers = (TextView) findViewById(R.id.textView_players);
+
         mEditText = (EditText) findViewById(R.id.et_player);
 
 
         mButton = (Button) findViewById(R.id.button);
+        mButtonPlayers = (Button) findViewById(R.id.buttonAddPlayer);
+
         mButton.setOnClickListener(this);
+        mButtonPlayers.setOnClickListener(this);
         mDiceTextView1.setOnClickListener(this);
         mDiceTextView2.setOnClickListener(this);
         mDiceTextView3.setOnClickListener(this);
@@ -78,9 +87,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.buttonAddPlayer:
-                Player player = new Player(mEditText.toString());
-                players.add(player);
-                mEditText.setText("");
+                if(players.size() < 2){
+                    Player player = new Player(mEditText.getText().toString());
+                    players.add(player);
+                    mEditText.setText("");
+                    mTextViewPlayers.setText(this.getPlayers());
+                }
+                break;
             default:
                 break;
         }
@@ -101,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public String getPlayers(){
         String out = "";
         for(Player p: players){
-            out += p + "\n";
+            out += p.getName() + "\n";
         }
         return out;
     }
