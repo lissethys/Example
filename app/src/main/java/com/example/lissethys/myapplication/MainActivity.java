@@ -12,23 +12,19 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Game game = new Game();
 
-    private Dice dice1 = game.getDice1();
-    private Dice dice2 = game.getDice2();
-    private Dice dice3 = game.getDice3();
-
-    private Player player1;
-    private Player player2;
-
     private TextView mDiceTextView1;
     private TextView mDiceTextView2;
     private TextView mDiceTextView3;
     private TextView mTextViewPlayer1;
     private TextView mTextViewPlayer2;
+    private TextView mTextViewTurn;
 
     private EditText mEditText;
 
     private Button mButton;
     private Button mButtonPlayers;
+
+    private int turn = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDiceTextView3 = (TextView) findViewById(R.id.textView3);
         mTextViewPlayer1 = (TextView) findViewById(R.id.textView_player1);
         mTextViewPlayer2 = (TextView) findViewById(R.id.textView_player2);
+        mTextViewTurn = (TextView) findViewById(R.id.textView_turn);
 
         mEditText = (EditText) findViewById(R.id.et_player);
 
@@ -59,45 +56,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.button:
-                game.rollDices();
-                mDiceTextView1.setText("" + dice1.getDice());
-                mDiceTextView2.setText("" + dice2.getDice());
-                mDiceTextView3.setText("" + dice3.getDice());
+                if(turn > 1){
+                    game.rollDices();
+                    turn--;
+                    mTextViewTurn.setText("Turn: " + turn);
+                } else if (turn == 1) {
+                    game.rollDices();
+                    turn = 3;
+                    mTextViewTurn.setText("Turn: " + turn);
+                }
+
+                mDiceTextView1.setText("" + game.getDice1().getDice());
+                mDiceTextView2.setText("" + game.getDice2().getDice());
+                mDiceTextView3.setText("" + game.getDice3().getDice());
                 break;
             case R.id.textView:
-                dice1.changeStuck();
-                if(dice1.isStuck()){
+                game.getDice1().changeStuck();
+                if(game.getDice1().isStuck()){
                     mDiceTextView1.setBackgroundColor(0xfff00000);
                 }else{
                     mDiceTextView1.setBackgroundColor(0x00000fff);
                 }
                 break;
             case R.id.textView2:
-                dice2.changeStuck();
-                if(dice2.isStuck()){
+                game.getDice2().changeStuck();
+                if(game.getDice2().isStuck()){
                     mDiceTextView2.setBackgroundColor(0xfff00000);
                 }else{
                     mDiceTextView2.setBackgroundColor(0x00000fff);
                 }
                 break;
             case R.id.textView3:
-                dice3.changeStuck();
-                if(dice3.isStuck()){
+                game.getDice3().changeStuck();
+                if(game.getDice3().isStuck()){
                     mDiceTextView3.setBackgroundColor(0xfff00000);
                 }else{
                     mDiceTextView3.setBackgroundColor(0x00000fff);
                 }
                 break;
             case R.id.buttonAddPlayer:
-                if(player1 == null){
-                    player1 = new Player(mEditText.getText().toString());
-                    player1.isTurn();
+                if(game.getPlayer1() == null){
+                    game.setPlayer1(new Player(mEditText.getText().toString()));
+                    game.getPlayer1().setTurn(true);
                     mEditText.setText("");
-                    mTextViewPlayer1.setText(player1.getName());
-                }else if(player2 == null){
-                    player2 = new Player(mEditText.getText().toString());
+                    mTextViewPlayer1.setText(game.getPlayer1().getName());
+                }else if(game.getPlayer2() == null){
+                    game.setPlayer2(new Player(mEditText.getText().toString()));
                     mEditText.setText("");
-                    mTextViewPlayer2.setText(player2.getName());
+                    mTextViewPlayer2.setText(game.getPlayer2().getName());
                 }
                 break;
             default:

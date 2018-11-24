@@ -2,7 +2,7 @@ package com.example.lissethys.myapplication;
 
 public class Player {
     private String name;
-    private boolean turn;
+    private boolean turn = false;
     private int points = 0;
 
     public Player(String name){

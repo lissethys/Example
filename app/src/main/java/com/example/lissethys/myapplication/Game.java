@@ -8,6 +8,31 @@ public class Game {
     private Player player1;
     private Player player2;
 
+
+
+    public Dice getDice1() {
+        return dice1;
+    }
+    public Dice getDice2() {
+        return dice2;
+    }
+    public Dice getDice3() {
+        return dice3;
+    }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+    public void setPlayer1(Player player1) {
+        this.player1 = player1;
+    }
+    public Player getPlayer2() {
+        return player2;
+    }
+    public void setPlayer2(Player player2) {
+        this.player2 = player2;
+    }
+
     public void rollDices(){
         if(!dice1.isStuck()){
             dice1.rollDice();
@@ -20,27 +45,13 @@ public class Game {
         }
     }
 
-    public Dice getDice1() {
-        return dice1;
-    }
-    public Dice getDice2() {
-        return dice2;
-    }
-    public Dice getDice3() {
-        return dice3;
-    }
-
-    public void setPlayer1(Player player1) {
-        this.player1 = player1;
-    }
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
-    }
-
-    public Player getPlayer1() {
-        return player1;
-    }
-    public Player getPlayer2() {
-        return player2;
+    public void switchTurn(){
+        if(player1.isTurn()){
+            player1.setTurn(false);
+            player2.setTurn(true);
+        }else{
+            player2.setTurn(false);
+            player1.setTurn(true);
+        }
     }
 }
