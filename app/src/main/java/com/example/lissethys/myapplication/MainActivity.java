@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonAddPlayer:
                 if(player1 == null){
                     player1 = new Player(mEditText.getText().toString());
+                    player1.isTurn();
                     mEditText.setText("");
                     mTextViewPlayer1.setText(player1.getName());
                 }else if(player2 == null){
