@@ -30,12 +30,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mButton = (Button) findViewById(R.id.button);
         mButton.setOnClickListener(this);
-
+        mDiceTextView1.setOnClickListener(this);
+        mDiceTextView2.setOnClickListener(this);
+        mDiceTextView3.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
-
+        switch(view.getId()){
+            case R.id.button:
+                dice1.rollDice();
+                dice2.rollDice();
+                dice3.rollDice();
+                mDiceTextView1.setText("" + dice1.getDice());
+                mDiceTextView2.setText("" + dice2.getDice());
+                mDiceTextView3.setText("" + dice3.getDice());
+                break;
+            case R.id.textView:
+                mDiceTextView1.setBackgroundColor(0xfff00000);
+                mDiceTextView1.setTextColor(0xffffffff);
+                break;
+            case R.id.textView2:
+                mDiceTextView2.setBackgroundColor(0xfff00000);
+                mDiceTextView2.setTextColor(0xffffffff);
+                break;
+            case R.id.textView3:
+                mDiceTextView3.setBackgroundColor(0xfff00000);
+                mDiceTextView3.setTextColor(0xffffffff);
+                break;
+            default:
+                break;
+        }
     }
 }
