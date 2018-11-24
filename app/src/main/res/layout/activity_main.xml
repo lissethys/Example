@@ -17,7 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="50dp"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:onClick="onClick"
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -25,7 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="100dp"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:onClick="onClick"
+        android:clickable="true"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -33,7 +37,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="150dp"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:onClick="onClick"
+            android:clickable="true"/>
 
     <Button
         android:id="@+id/button"

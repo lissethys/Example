@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Dice dice1 = new Dice();
     private Dice dice2 = new Dice();
@@ -29,19 +29,13 @@ public class MainActivity extends AppCompatActivity {
         mDiceTextView3 = (TextView) findViewById(R.id.textView3);
 
         mButton = (Button) findViewById(R.id.button);
+        mButton.setOnClickListener(this);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dice1.rollDice();
-                dice2.rollDice();
-                dice3.rollDice();
-                mDiceTextView1.setText("" + dice1.getDice());
-                mDiceTextView2.setText("" + dice2.getDice());
-                mDiceTextView3.setText("" + dice3.getDice());
-            }
-        });
 
+    }
+
+    @Override
+    public void onClick(View view) {
 
     }
 }
