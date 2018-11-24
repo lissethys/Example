@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mDiceTextView2;
     private TextView mDiceTextView3;
 
+    private EditText mEditText;
+
     private Button mButton;
 
 
@@ -31,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDiceTextView1 = (TextView) findViewById(R.id.textView);
         mDiceTextView2 = (TextView) findViewById(R.id.textView2);
         mDiceTextView3 = (TextView) findViewById(R.id.textView3);
+        mEditText = (EditText) findViewById(R.id.et_player);
+
 
         mButton = (Button) findViewById(R.id.button);
         mButton.setOnClickListener(this);
@@ -74,7 +78,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.buttonAddPlayer:
-                Player player = new Player("")
+                Player player = new Player(mEditText.toString());
+                players.add(player);
+                mEditText.setText("");
             default:
                 break;
         }
@@ -90,5 +96,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(!dice3.isStuck()){
             dice3.rollDice();
         }
+    }
+
+    public String getPlayers(){
+        String out = "";
+        for(Player p: players){
+            out += p + "\n";
+        }
+        return out;
     }
 }
