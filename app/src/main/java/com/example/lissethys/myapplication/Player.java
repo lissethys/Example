@@ -2,6 +2,8 @@ package com.example.lissethys.myapplication;
 
 public class Player {
     private String name;
+    private boolean turn;
+    private int points;
 
     public Player(String name){
         this.setName(name);
