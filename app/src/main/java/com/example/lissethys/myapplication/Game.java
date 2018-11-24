@@ -8,6 +8,7 @@ public class Game {
     private Player player1;
     private Player player2;
 
+    private int turn = 3;
 
 
     public Dice getDice1() {
@@ -31,6 +32,20 @@ public class Game {
     }
     public void setPlayer2(Player player2) {
         this.player2 = player2;
+    }
+
+    public int getTurn(){
+        return this.turn = turn;
+    }
+
+    public void roll(){
+        if(turn > 1){
+            rollDices();
+            turn--;
+        } else if (turn == 1) {
+            rollDices();
+            turn = 3;
+        }
     }
 
     public void rollDices(){

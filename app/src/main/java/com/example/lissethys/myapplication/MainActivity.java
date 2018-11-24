@@ -56,7 +56,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.button:
-                if(turn > 1){
+                game.roll();
+                mTextViewTurn.setText("Turn: " + game.getTurn());
+
+                /*if(turn > 1){
                     game.rollDices();
                     turn--;
                     mTextViewTurn.setText("Turn: " + turn);
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     game.rollDices();
                     turn = 3;
                     mTextViewTurn.setText("Turn: " + turn);
-                }
+                }**/
 
                 mDiceTextView1.setText("" + game.getDice1().getDice());
                 mDiceTextView2.setText("" + game.getDice2().getDice());
