@@ -9,63 +9,77 @@
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <TextView
-            android:id="@+id/textView_player1"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView_players"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="150dp"
             android:text="Players"
             android:textSize="20dp" />
 
+        <TextView
+            android:id="@+id/rolls1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="150dp"
+            android:text="Rolls: "
+            android:textSize="20dp"/>
 
         <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:layout_marginLeft="50dp"
-        android:textSize="20dp"
-        android:onClick="onClick"
-        android:clickable="true"/>
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="250dp"
+            android:layout_marginTop="300dp"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:text="5"
+            android:textSize="150px" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:layout_marginLeft="100dp"
-        android:textSize="20dp"
-        android:onClick="onClick"
-        android:clickable="true"/>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="300dp"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:text="5"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
             android:layout_marginLeft="150dp"
-            android:textSize="20dp"
+            android:layout_marginTop="300dp"
+            android:clickable="true"
             android:onClick="onClick"
-            android:clickable="true"/>
+            android:text="5"
+            android:textSize="20dp" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginTop="400dp"
         android:textSize="20dp"
         android:text="roll" />
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
-            android:layout_marginLeft="150dp"
+            android:layout_marginTop="450dp"
             android:textSize="20dp"
             android:text="pass" />
 
@@ -73,15 +87,17 @@
             android:id="@+id/et_player"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="150dp" />
+            android:layout_marginTop="20dp" />
 
         <Button
             android:id="@+id/buttonAddPlayer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="70dp"
             android:text="Add player"
             android:textSize="20dp" />
+
+
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
