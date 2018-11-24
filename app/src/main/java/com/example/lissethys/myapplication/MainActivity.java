@@ -4,9 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    private ArrayList<Player> players;
 
     private Dice dice1 = new Dice();
     private Dice dice2 = new Dice();
@@ -40,27 +44,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.button:
-                dice1.rollDice();
-                dice2.rollDice();
-                dice3.rollDice();
+                this.rollDices();
                 mDiceTextView1.setText("" + dice1.getDice());
                 mDiceTextView2.setText("" + dice2.getDice());
                 mDiceTextView3.setText("" + dice3.getDice());
                 break;
             case R.id.textView:
-                mDiceTextView1.setBackgroundColor(0xfff00000);
-                mDiceTextView1.setTextColor(0xffffffff);
+                dice1.changeStuck();
+                if(dice1.isStuck()){
+                    mDiceTextView1.setBackgroundColor(0xfff00000);
+                }else{
+                    mDiceTextView1.setBackgroundColor(0x00000fff);
+                }
                 break;
             case R.id.textView2:
-                mDiceTextView2.setBackgroundColor(0xfff00000);
-                mDiceTextView2.setTextColor(0xffffffff);
+                dice2.changeStuck();
+                if(dice2.isStuck()){
+                    mDiceTextView2.setBackgroundColor(0xfff00000);
+                }else{
+                    mDiceTextView2.setBackgroundColor(0x00000fff);
+                }
                 break;
             case R.id.textView3:
-                mDiceTextView3.setBackgroundColor(0xfff00000);
-                mDiceTextView3.setTextColor(0xffffffff);
+                dice3.changeStuck();
+                if(dice3.isStuck()){
+                    mDiceTextView3.setBackgroundColor(0xfff00000);
+                }else{
+                    mDiceTextView3.setBackgroundColor(0x00000fff);
+                }
                 break;
+            case R.id.buttonAddPlayer:
+                Player player = new Player("")
             default:
                 break;
+        }
+    }
+
+    public void rollDices(){
+        if(!dice1.isStuck()){
+            dice1.rollDice();
+        }
+        if(!dice2.isStuck()){
+            dice2.rollDice();
+        }
+        if(!dice3.isStuck()){
+            dice3.rollDice();
         }
     }
 }

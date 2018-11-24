@@ -59,6 +59,18 @@
             android:textSize="20dp"
             android:text="pass" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="150dp" />
+
+        <Button
+            android:id="@+id/buttonAddPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:text="Add player"
+            android:textSize="20dp" />
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
