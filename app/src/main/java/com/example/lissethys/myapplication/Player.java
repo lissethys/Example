@@ -3,7 +3,9 @@ package com.example.lissethys.myapplication;
 public class Player {
     private String name;
     private boolean turn = false;
-    private int score = 0;
+    private String displayScore;
+    private int compareScore;
+    private int turf = 5;
 
     public Player(String name){
         this.setName(name);
@@ -21,16 +23,53 @@ public class Player {
     public boolean isTurn() {
         return turn;
     }
-
     public void setTurn(boolean turn) {
         this.turn = turn;
     }
 
-    public int getScore() {
-        return score;
+    public String getDisplayScore() {
+        return displayScore;
+    }
+    public void setDisplayScore(int compareScore) {
+        switch(compareScore){
+            case 300:
+                this.displayScore = "drie azen";
+                break;
+            case 299:
+                this.displayScore = "soixante-neuf";
+                break;
+            case 298:
+                this.displayScore = "zand van 5";
+                break;
+            case 297:
+                this.displayScore = "zand van 4";
+                break;
+            case 296:
+                this.displayScore = "zand van 3";
+                break;
+            case 295:
+                this.displayScore = "zand van 2";
+                break;
+            default:
+                this.displayScore = "" + compareScore;
+                break;
+        }
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public int getCompareScore() {
+        return compareScore;
+    }
+
+    public void setCompareScore(int compareScore) {
+        this.compareScore = compareScore;
+        setDisplayScore(compareScore);
+    }
+
+    public void decreaseTurf(){
+        turf--;
+    }
+
+    public int getTurf() {
+        return turf;
     }
 }

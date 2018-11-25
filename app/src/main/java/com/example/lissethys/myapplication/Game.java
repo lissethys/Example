@@ -8,8 +8,11 @@ public class Game {
     private Player player1;
     private Player player2;
 
+    private Player winner;
+
     private int turn = 3;
 
+    private boolean rondeStart;
 
     public Dice getDice1() {
         return dice1;
@@ -39,14 +42,46 @@ public class Game {
     }
 
     public void roll(){
-        if(turn > 1){
-            rollDices();
-            turn--;
-        } else if (turn == 1) {
-            switchTurn();
-            rollDices();
-            turn = 3;
+        this.winner = null;
+        if(player1.isTurn()){
+            if(turn > 1){
+                rondeStart = true;
+                rollDices();
+                turn--;
+            } else if (turn == 1) {
+                switchTurn();
+                setScorePlayer1();
+                rollDices();
+                turn = 3;
+            }
+        }else{
+            if(turn > 1){
+                rollDices();
+                turn--;
+            } else if (turn == 1) {
+                switchTurn();
+                setScorePlayer2();
+                rondeStart = false;
+                rollDices();
+                turn = 3;
+            }
         }
+        if(!rondeStart){
+            if(player1.getCompareScore() > player2.getCompareScore()){
+                player1.decreaseTurf();
+            }else{
+                player2.decreaseTurf();
+            }
+        }
+        if(player1.getTurf() == 0){
+            this.winner = player1;
+        }else if(player2.getTurf() == 0){
+            this.winner = player2;
+        }
+    }
+
+    public Player getWinner() {
+        return winner;
     }
 
     public void rollDices(){
@@ -69,5 +104,15 @@ public class Game {
             player2.setTurn(false);
             player1.setTurn(true);
         }
+    }
+
+    public void setScorePlayer1(){
+        Counter counter = new Counter(dice1,dice2,dice3);
+        this.player1.setCompareScore(counter.getScore());
+    }
+
+    public void setScorePlayer2(){
+        Counter counter = new Counter(dice1,dice2,dice3);
+        this.player2.setCompareScore(counter.getScore());
     }
 }

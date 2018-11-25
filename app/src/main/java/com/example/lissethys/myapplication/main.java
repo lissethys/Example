@@ -2,9 +2,13 @@ package com.example.lissethys.myapplication;
 
 public class main {
     public static void main(String[] args) {
-        Dice dice = new Dice();
+        Dice dice1 = new Dice(1);
+        Dice dice2 = new Dice(1);
+        Dice dice3 = new Dice(6);
 
-        dice.rollDice();
-        System.out.println(dice.getDice());
+        System.out.println(dice1.getDice() + "\n" + dice2.getDice() + "\n" + dice3.getDice());
+
+        Counter counter = new Counter(dice1,dice2,dice3);
+        System.out.println(counter.getScore());
     }
 }

@@ -21,33 +21,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTextViewTurn;
     private TextView mTextViewTurnTo1;
     private TextView mTextViewTurnTo2;
+    private TextView mTextViewScore1;
+    private TextView mTextViewScore2;
+    private TextView mTextViewPoints1;
+    private TextView mTextViewPoints2;
+    private TextView mTextViewWinner;
 
     private EditText mEditText;
 
     private Button mButton;
     private Button mButtonPlayers;
 
-    private int turn = 3;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDiceTextView1 = (TextView) findViewById(R.id.textView);
-        mDiceTextView2 = (TextView) findViewById(R.id.textView2);
-        mDiceTextView3 = (TextView) findViewById(R.id.textView3);
-        mTextViewPlayer1 = (TextView) findViewById(R.id.textView_player1);
-        mTextViewPlayer2 = (TextView) findViewById(R.id.textView_player2);
-        mTextViewTurn = (TextView) findViewById(R.id.textView_turn);
+        mDiceTextView1 = findViewById(R.id.textView);
+        mDiceTextView2 = findViewById(R.id.textView2);
+        mDiceTextView3 = findViewById(R.id.textView3);
+        mTextViewPlayer1 = findViewById(R.id.textView_player1);
+        mTextViewPlayer2 = findViewById(R.id.textView_player2);
+        mTextViewTurn = findViewById(R.id.textView_turn);
         mTextViewTurnTo1 = findViewById(R.id.textView_turnTo1);
         mTextViewTurnTo2 = findViewById(R.id.textView_turnTo2);
+        mTextViewScore1 = findViewById(R.id.score1);
+        mTextViewScore2 = findViewById(R.id.score2);
+        mTextViewPoints1 = findViewById(R.id.points1);
+        mTextViewPoints2 = findViewById(R.id.points2);
+        mTextViewWinner = findViewById(R.id.textView_winner);
 
-        mEditText = (EditText) findViewById(R.id.et_player);
+
+        mEditText = findViewById(R.id.et_player);
 
 
-        mButton = (Button) findViewById(R.id.button);
-        mButtonPlayers = (Button) findViewById(R.id.buttonAddPlayer);
+        mButton = findViewById(R.id.button);
+        mButtonPlayers = findViewById(R.id.buttonAddPlayer);
 
         mButton.setOnClickListener(this);
         mButtonPlayers.setOnClickListener(this);
@@ -62,6 +71,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(view.getId()){
             case R.id.button:
                 game.roll();
+                mTextViewScore1.setText(game.getPlayer1().getDisplayScore());
+                mTextViewScore2.setText(game.getPlayer2().getDisplayScore());
+                mTextViewPoints1.setText("" + game.getPlayer1().getTurf());
+                mTextViewPoints2.setText("" + game.getPlayer2().getTurf());
+                if(game.getWinner() != null) mTextViewWinner.setText(game.getWinner().getName());
+
                 mTextViewTurn.setText("Turn: " + game.getTurn());
                 if(game.getPlayer1().isTurn()){
                     mTextViewTurnTo1.setText("T");

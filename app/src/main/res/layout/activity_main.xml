@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="250dp"
             android:layout_marginTop="150dp"
-            android:text="105"
+            android:text=""
             android:textSize="20dp"
             android:textAlignment="center"/>
 
@@ -93,7 +93,18 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="250dp"
             android:layout_marginTop="200dp"
-            android:text="105"
+            android:text=""
+            android:textSize="20dp"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/textView_winner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="200dp"
+            android:layout_marginTop="250dp"
+            android:text=""
             android:textSize="20dp"
             android:textAlignment="center"/>
 
