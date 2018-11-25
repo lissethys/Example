@@ -1,5 +1,8 @@
 package com.example.lissethys.myapplication;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -70,25 +73,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.button:
-                game.roll();
-                mTextViewScore1.setText(game.getPlayer1().getDisplayScore());
-                mTextViewScore2.setText(game.getPlayer2().getDisplayScore());
-                mTextViewPoints1.setText("" + game.getPlayer1().getTurf());
-                mTextViewPoints2.setText("" + game.getPlayer2().getTurf());
-                if(game.getWinner() != null) mTextViewWinner.setText(game.getWinner().getName());
+                if(game.getPlayer1() != null && game.getPlayer2() != null) {
+                    game.roll();
+                    mTextViewScore1.setText(game.getPlayer1().getDisplayScore());
+                    mTextViewScore2.setText(game.getPlayer2().getDisplayScore());
+                    mTextViewPoints1.setText("" + game.getPlayer1().getTurf());
+                    mTextViewPoints2.setText("" + game.getPlayer2().getTurf());
 
-                mTextViewTurn.setText("Turn: " + game.getTurn());
-                if(game.getPlayer1().isTurn()){
-                    mTextViewTurnTo1.setText("T");
-                    mTextViewTurnTo2.setText("");
+                    if (game.getWinner() != null)
+                        mTextViewWinner.setText(game.getWinner().getName());
+
+                    mTextViewTurn.setText("Turn: " + game.getTurn());
+                    if (game.getPlayer1().isTurn()) {
+                        mTextViewTurnTo1.setText("T");
+                        mTextViewTurnTo2.setText("");
+                    } else {
+                        mTextViewTurnTo1.setText("");
+                        mTextViewTurnTo2.setText("T");
+                    }
+
+                    mDiceTextView1.setText("" + game.getDice1().getDice());
+                    mDiceTextView2.setText("" + game.getDice2().getDice());
+                    mDiceTextView3.setText("" + game.getDice3().getDice());
                 }else{
-                    mTextViewTurnTo1.setText("");
-                    mTextViewTurnTo2.setText("T");
+                    mTextViewWinner.setText("Add 2 players first");
                 }
-
-                mDiceTextView1.setText("" + game.getDice1().getDice());
-                mDiceTextView2.setText("" + game.getDice2().getDice());
-                mDiceTextView3.setText("" + game.getDice3().getDice());
                 break;
             case R.id.textView:
                 game.getDice1().changeStuck();
@@ -116,14 +125,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonAddPlayer:
                 if(game.getPlayer1() == null){
-                    game.setPlayer1(new Player(mEditText.getText().toString()));
-                    game.getPlayer1().setTurn(true);
-                    mEditText.setText("");
-                    mTextViewPlayer1.setText(game.getPlayer1().getName());
-                }else if(game.getPlayer2() == null){
-                    game.setPlayer2(new Player(mEditText.getText().toString()));
-                    mEditText.setText("");
-                    mTextViewPlayer2.setText(game.getPlayer2().getName());
+                    String name = mEditText.getText().toString();
+                    if(!name.equals("")) {
+                        game.setPlayer1(new Player(name));
+                        game.getPlayer1().setTurn(true);
+                        mEditText.setText("");
+                        mTextViewPlayer1.setText(game.getPlayer1().getName());
+                        mTextViewWinner.setText("");
+                    }else{
+                        mTextViewWinner.setText("No valid name");
+                    }
+                }else if(game.getPlayer2() == null) {
+                    String name = mEditText.getText().toString();
+                    if (!name.equals("")) {
+                        game.setPlayer2(new Player(name));
+                        mEditText.setText("");
+                        mTextViewPlayer2.setText(game.getPlayer2().getName());
+                        mTextViewWinner.setText("");
+                    }else{
+                        mTextViewWinner.setText(("No valid name"));
+                    }
                 }
                 break;
             default:

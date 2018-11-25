@@ -74,7 +74,7 @@ public class Game {
             }
         }
         if(player1.getTurf() == 0){
-            this.winner = player1;
+            this.winner = player1; 
         }else if(player2.getTurf() == 0){
             this.winner = player2;
         }
