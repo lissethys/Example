@@ -37,10 +37,17 @@ public class Game {
         this.player2 = player2;
     }
 
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
     public int getTurn(){
-        return this.turn = turn;
+        return this.turn;
     }
 
+    /* methode roll zorgt voor de hele werking van het spel.
+     * speler 1 laten rollen --> na 3 keer rollen wordt score van player 1 ge-set
+     * Beurt afwisseling
+     * speler 2 laten rollen --> na 3 keer rollen wordt score van player 2 ge-set **/
     public void roll(){
         this.winner = null;
         if(player1.isTurn()){
@@ -51,8 +58,11 @@ public class Game {
             } else if (turn == 1) {
                 switchTurn();
                 setScorePlayer1();
+                if(dice1.isStuck()) dice1.changeStuck();
+                if(dice2.isStuck()) dice2.changeStuck();
+                if(dice3.isStuck()) dice3.changeStuck();
                 rollDices();
-                turn = 3;
+                this.turn = 3;
             }
         }else{
             if(turn > 1){
@@ -61,11 +71,16 @@ public class Game {
             } else if (turn == 1) {
                 switchTurn();
                 setScorePlayer2();
+                if(dice1.isStuck()) dice1.changeStuck();
+                if(dice2.isStuck()) dice2.changeStuck();
+                if(dice3.isStuck()) dice3.changeStuck();
                 rondeStart = false;
                 rollDices();
-                turn = 3;
+                this.turn = 3;
             }
         }
+        /* Wanneer player 2 gespeeld heeft start nieuwe ronde en gebeurd deze code.
+        * compared de score en doet 1 turf weg bij de winnaar van die ronde**/
         if(!rondeStart){
             if(player1.getCompareScore() > player2.getCompareScore()){
                 player1.decreaseTurf();
@@ -73,8 +88,10 @@ public class Game {
                 player2.decreaseTurf();
             }
         }
+        /* checkt elke keer of iemand al op 0 is.
+        * wanneer iemand op 0 dan is er winnaar.**/
         if(player1.getTurf() == 0){
-            this.winner = player1; 
+            this.winner = player1;
         }else if(player2.getTurf() == 0){
             this.winner = player2;
         }
@@ -84,6 +101,7 @@ public class Game {
         return winner;
     }
 
+    /* methode rollDices zorgt ervoor dat dices niet rollen wanneer ze vast gezet worden en vice versa**/
     public void rollDices(){
         if(!dice1.isStuck()){
             dice1.rollDice();
@@ -96,6 +114,7 @@ public class Game {
         }
     }
 
+    /* methode switchTurn zorgt voor afwisseling van beurt**/
     public void switchTurn(){
         if(player1.isTurn()){
             player1.setTurn(false);
@@ -106,11 +125,13 @@ public class Game {
         }
     }
 
+    /* methode setScorePlayer1 zet de score van player1**/
     public void setScorePlayer1(){
         Counter counter = new Counter(dice1,dice2,dice3);
         this.player1.setCompareScore(counter.getScore());
     }
 
+    /* methode setScorePlayer2 zet de score van player2**/
     public void setScorePlayer2(){
         Counter counter = new Counter(dice1,dice2,dice3);
         this.player2.setCompareScore(counter.getScore());

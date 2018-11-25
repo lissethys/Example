@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText mEditText;
 
     private Button mButton;
+    private Button mButton2;
     private Button mButtonPlayers;
 
     @Override
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /* android shit linken me uw variabelen hier in uw klasse**/
         mDiceTextView1 = findViewById(R.id.textView);
         mDiceTextView2 = findViewById(R.id.textView2);
         mDiceTextView3 = findViewById(R.id.textView3);
@@ -59,9 +61,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         mButton = findViewById(R.id.button);
+        mButton2 = findViewById(R.id.button2);
         mButtonPlayers = findViewById(R.id.buttonAddPlayer);
 
+        /*die boys hier onder mij worden gewoon allemaal verwezen naar de onClick methode en daar wordt het juiste uitgevoerd naar gelang welke knop. (door de switch met dan R.id.(iets)**/
         mButton.setOnClickListener(this);
+        mButton2.setOnClickListener(this);
         mButtonPlayers.setOnClickListener(this);
         mDiceTextView1.setOnClickListener(this);
         mDiceTextView2.setOnClickListener(this);
@@ -69,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /* Ja android bucht he lisse. basic want ik kon het op 1 dag ;)**/
     @Override
     public void onClick(View view) {
         switch(view.getId()){
@@ -79,6 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mTextViewScore2.setText(game.getPlayer2().getDisplayScore());
                     mTextViewPoints1.setText("" + game.getPlayer1().getTurf());
                     mTextViewPoints2.setText("" + game.getPlayer2().getTurf());
+                    if (!game.getDice1().isStuck()) mDiceTextView1.setBackgroundColor(0x00000fff);
+                    if (!game.getDice2().isStuck()) mDiceTextView2.setBackgroundColor(0x00000fff);
+                    if (!game.getDice3().isStuck()) mDiceTextView3.setBackgroundColor(0x00000fff);
+
 
                     if (game.getWinner() != null)
                         mTextViewWinner.setText(game.getWinner().getName());
@@ -98,6 +108,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     mTextViewWinner.setText("Add 2 players first");
                 }
+                break;
+            case R.id.button2:
+
+                mTextViewWinner.setText("pass");
                 break;
             case R.id.textView:
                 game.getDice1().changeStuck();

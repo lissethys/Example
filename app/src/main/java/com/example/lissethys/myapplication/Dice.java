@@ -1,5 +1,6 @@
 package com.example.lissethys.myapplication;
 
+/* ne Fucking dobbelsteen lisse. allee komaan. met alle methodekes die nodig zijn om het te doen werken.**/
 import java.util.Random;
 
 public class Dice {

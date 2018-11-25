@@ -1,5 +1,7 @@
 package com.example.lissethys.myapplication;
 
+/* Klasse om de score te tellen die een player gegooid heeft om daarna met de andere speler te kunnen vergelijken.**/
+
 public class Counter {
     private int score;
 
@@ -20,6 +22,9 @@ public class Counter {
                     break;
                 case 2:
                     score = 295;
+                    break;
+                case 6:
+                    score = 180;
                     break;
                 default:
                     break;

@@ -14,6 +14,7 @@ public class Player {
         return name;
     }
 
+    /* ja niemand wilt/mag toch          noemen ? of nie ?**/
     public void setName(String name) {
         if(name != null || name.trim().isEmpty()){
             this.name = name;
@@ -30,6 +31,8 @@ public class Player {
     public String getDisplayScore() {
         return displayScore;
     }
+
+    /* methode setDisplayScore wordt opgeroepen wanneer setCompareScore wordt gedaan om automatisch een displayScore te hebben**/
     public void setDisplayScore(int compareScore) {
         switch(compareScore){
             case 300:
@@ -60,11 +63,13 @@ public class Player {
         return compareScore;
     }
 
+    /* methode setCompareScore om een oud vlaams spel te kunnen doen werken op een pc moest het zo. pareltje van inventiviteit**/
     public void setCompareScore(int compareScore) {
         this.compareScore = compareScore;
         setDisplayScore(compareScore);
     }
 
+    /* Moet ik hier uitleg bij geven.... lisse thys...**/
     public void decreaseTurf(){
         turf--;
     }
