@@ -3,7 +3,7 @@ package com.example.lissethys.myapplication;
 public class Player {
     private String name;
     private boolean turn = false;
-    private int points = 0;
+    private int score = 0;
 
     public Player(String name){
         this.setName(name);
@@ -24,5 +24,13 @@ public class Player {
 
     public void setTurn(boolean turn) {
         this.turn = turn;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

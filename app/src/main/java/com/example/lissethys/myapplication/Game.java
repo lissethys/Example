@@ -43,6 +43,7 @@ public class Game {
             rollDices();
             turn--;
         } else if (turn == 1) {
+            switchTurn();
             rollDices();
             turn = 3;
         }

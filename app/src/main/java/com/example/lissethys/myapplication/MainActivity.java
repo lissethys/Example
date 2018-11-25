@@ -1,5 +1,6 @@
 package com.example.lissethys.myapplication;
 
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mTextViewPlayer1;
     private TextView mTextViewPlayer2;
     private TextView mTextViewTurn;
+    private TextView mTextViewTurnTo1;
+    private TextView mTextViewTurnTo2;
 
     private EditText mEditText;
 
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTextViewPlayer1 = (TextView) findViewById(R.id.textView_player1);
         mTextViewPlayer2 = (TextView) findViewById(R.id.textView_player2);
         mTextViewTurn = (TextView) findViewById(R.id.textView_turn);
+        mTextViewTurnTo1 = findViewById(R.id.textView_turnTo1);
+        mTextViewTurnTo2 = findViewById(R.id.textView_turnTo2);
 
         mEditText = (EditText) findViewById(R.id.et_player);
 
@@ -58,16 +63,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button:
                 game.roll();
                 mTextViewTurn.setText("Turn: " + game.getTurn());
-
-                /*if(turn > 1){
-                    game.rollDices();
-                    turn--;
-                    mTextViewTurn.setText("Turn: " + turn);
-                } else if (turn == 1) {
-                    game.rollDices();
-                    turn = 3;
-                    mTextViewTurn.setText("Turn: " + turn);
-                }**/
+                if(game.getPlayer1().isTurn()){
+                    mTextViewTurnTo1.setText("T");
+                    mTextViewTurnTo2.setText("");
+                }else{
+                    mTextViewTurnTo1.setText("");
+                    mTextViewTurnTo2.setText("T");
+                }
 
                 mDiceTextView1.setText("" + game.getDice1().getDice());
                 mDiceTextView2.setText("" + game.getDice2().getDice());

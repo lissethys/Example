@@ -15,6 +15,15 @@
         android:orientation="vertical"
         android:gravity="center">
 
+        <TextView
+            android:id="@+id/textView_turnTo1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="150dp"
+            android:layout_marginTop="150dp"
+            android:text=""
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textView_player1"
@@ -46,6 +55,16 @@
             android:text="105"
             android:textSize="20dp"
             android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/textView_turnTo2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="150dp"
+            android:layout_marginTop="200dp"
+            android:text=""
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textView_player2"
