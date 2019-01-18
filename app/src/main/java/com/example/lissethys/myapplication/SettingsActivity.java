@@ -13,14 +13,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     Game game = new Game();
 
-
-    private TextView mTextViewPlayer1;
-
     private EditText mNamePlayer1;
     private EditText mNamePlayer2;
 
-    private Button mButton;
-    private Button mButton2;
     private Button mButtonPlayers;
 
     @Override
@@ -29,19 +24,14 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
 
-        mTextViewPlayer1 = findViewById(R.id.textView_player1);
-
-
-
         mNamePlayer1 = findViewById(R.id.name_player_1);
         mNamePlayer2 = findViewById(R.id.name_player_2);
 
 
-        mButton = findViewById(R.id.button);
-        mButton2 = findViewById(R.id.button2);
         mButtonPlayers = findViewById(R.id.buttonAddPlayer);
 
 
+        //tweede scherm waar men de namen van de spelers kan ingeven en deze dan worden doorgestuurd naar de MainActivity
 
         mButtonPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,12 +42,6 @@ public class SettingsActivity extends AppCompatActivity {
                 intent.putExtra("player1", namePlayer1);
                 intent.putExtra("player2", namePlayer2);
                 startActivity(intent);
-
-                /*
-                Intent player2Intent = new Intent(SettingsActivity.this, MainActivity.class);
-                player2Intent.putExtra(Intent.EXTRA_TEXT, namePlayer2);
-                startActivity(player2Intent);
-**/
             }
         });
 

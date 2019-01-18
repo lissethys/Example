@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText mEditText;
 
-    private Button mButton;
-    private Button mButton2;
+    private Button mButtonRoll;
+    private Button mButtonPass;
     private Button mButtonAddPlayers;
 
     private Button mBtnAddPlayers;
@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         /* android shit linken me uw variabelen hier in uw klasse**/
-        mDiceTextView1 = findViewById(R.id.textView);
-        mDiceTextView2 = findViewById(R.id.textView2);
-        mDiceTextView3 = findViewById(R.id.textView3);
+        mDiceTextView1 = findViewById(R.id.dice_1);
+        mDiceTextView2 = findViewById(R.id.dice_2);
+        mDiceTextView3 = findViewById(R.id.dice_3);
         mTextViewPlayer1 = findViewById(R.id.textView_player1);
         mTextViewPlayer2 = findViewById(R.id.textView_player2);
         mTextViewTurn = findViewById(R.id.textView_turn);
@@ -63,19 +63,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mEditText = findViewById(R.id.et_player);
 
 
-        mButton = findViewById(R.id.button);
-        mButton2 = findViewById(R.id.button2);
+        mButtonRoll = findViewById(R.id.button_roll);
+        mButtonPass = findViewById(R.id.button_pass);
         mButtonAddPlayers = findViewById(R.id.buttonAddPlayer);
 
         mBtnAddPlayers = findViewById(R.id.btnAddPlayers);
 
         /*die boys hier onder mij worden gewoon allemaal verwezen naar de onClick methode en daar wordt het juiste uitgevoerd naar gelang welke knop. (door de switch met dan R.id.(iets)**/
-        mButton.setOnClickListener(this);
-        mButton2.setOnClickListener(this);
+        mButtonRoll.setOnClickListener(this);
+        mButtonPass.setOnClickListener(this);
         mButtonAddPlayers.setOnClickListener(this);
         mDiceTextView1.setOnClickListener(this);
         mDiceTextView2.setOnClickListener(this);
         mDiceTextView3.setOnClickListener(this);
+
+        //Expliciete intent om naar tweede activity te gaan
 
         mBtnAddPlayers.setOnClickListener(new OnClickListener() {
             @Override
@@ -87,26 +89,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-
-
+        //Intent om data te halen uit de data van de tweede activity
 
         Intent intent = getIntent();
         String namePlayer1 = intent.getStringExtra("player1");
         String namePlayer2 = intent.getStringExtra("player2");
         mTextViewPlayer1.setText(namePlayer1);
         mTextViewPlayer2.setText(namePlayer2);
-        /*if(player1Intent.hasExtra(Intent.EXTRA_TEXT) && player2Intent.hasExtra(Intent.EXTRA_TEXT)){
-            String namePlayer1 = player1Intent.getStringExtra(Intent.EXTRA_TEXT);
-            String namePlayer2 = player2Intent.getStringExtra(Intent.EXTRA_TEXT);
-            mTextViewPlayer1.setText(namePlayer1);
-            mTextViewPlayer2.setText(namePlayer2);
-        }
 
-        /*Intent player2Intent = getIntent();
-        if(player2Intent.hasExtra(Intent.EXTRA_TEXT)){
-            String namePlayer2 = player2Intent.getStringExtra(Intent.EXTRA_TEXT);
-            mTextViewPlayer2.setText(namePlayer2);
-        }**/
 
 
     }
@@ -115,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch(view.getId()){
-            case R.id.button:
+            case R.id.button_roll:
                 if(game.getPlayer1() != null && game.getPlayer2() != null) {
                     game.roll();
                     mTextViewScore1.setText(game.getPlayer1().getDisplayScore());
@@ -146,11 +136,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mTextViewWinner.setText("Add 2 players first");
                 }
                 break;
-            case R.id.button2:
+            case R.id.button_pass:
 
                 mTextViewWinner.setText("pass");
                 break;
-            case R.id.textView:
+            case R.id.dice_1:
                 game.getDice1().changeStuck();
                 if(game.getDice1().isStuck()){
                     mDiceTextView1.setBackgroundColor(0xfff00000);
@@ -158,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mDiceTextView1.setBackgroundColor(0x00000fff);
                 }
                 break;
-            case R.id.textView2:
+            case R.id.dice_2:
                 game.getDice2().changeStuck();
                 if(game.getDice2().isStuck()){
                     mDiceTextView2.setBackgroundColor(0xfff00000);
@@ -166,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mDiceTextView2.setBackgroundColor(0x00000fff);
                 }
                 break;
-            case R.id.textView3:
+            case R.id.dice_3:
                 game.getDice3().changeStuck();
                 if(game.getDice3().isStuck()){
                     mDiceTextView3.setBackgroundColor(0xfff00000);
