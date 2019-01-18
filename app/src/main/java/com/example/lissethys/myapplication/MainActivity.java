@@ -9,8 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View.OnClickListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Game game = new Game();
@@ -33,7 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button mButton;
     private Button mButton2;
-    private Button mButtonPlayers;
+    private Button mButtonAddPlayers;
+
+    private Button mBtnAddPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,18 +65,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mButton = findViewById(R.id.button);
         mButton2 = findViewById(R.id.button2);
-        mButtonPlayers = findViewById(R.id.buttonAddPlayer);
+        mButtonAddPlayers = findViewById(R.id.buttonAddPlayer);
+
+        mBtnAddPlayers = findViewById(R.id.btnAddPlayers);
 
         /*die boys hier onder mij worden gewoon allemaal verwezen naar de onClick methode en daar wordt het juiste uitgevoerd naar gelang welke knop. (door de switch met dan R.id.(iets)**/
         mButton.setOnClickListener(this);
         mButton2.setOnClickListener(this);
-        mButtonPlayers.setOnClickListener(this);
+        mButtonAddPlayers.setOnClickListener(this);
         mDiceTextView1.setOnClickListener(this);
         mDiceTextView2.setOnClickListener(this);
         mDiceTextView3.setOnClickListener(this);
 
+        mBtnAddPlayers.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = MainActivity.this;
+                Class destinationActivity = SettingsActivity.class;
+                Intent startIntent = new Intent(context, destinationActivity);
+                startActivity(startIntent);
+            }
+        });
 
 
+
+
+        Intent intent = getIntent();
+        String namePlayer1 = intent.getStringExtra("player1");
+        String namePlayer2 = intent.getStringExtra("player2");
+        mTextViewPlayer1.setText(namePlayer1);
+        mTextViewPlayer2.setText(namePlayer2);
+        /*if(player1Intent.hasExtra(Intent.EXTRA_TEXT) && player2Intent.hasExtra(Intent.EXTRA_TEXT)){
+            String namePlayer1 = player1Intent.getStringExtra(Intent.EXTRA_TEXT);
+            String namePlayer2 = player2Intent.getStringExtra(Intent.EXTRA_TEXT);
+            mTextViewPlayer1.setText(namePlayer1);
+            mTextViewPlayer2.setText(namePlayer2);
+        }
+
+        /*Intent player2Intent = getIntent();
+        if(player2Intent.hasExtra(Intent.EXTRA_TEXT)){
+            String namePlayer2 = player2Intent.getStringExtra(Intent.EXTRA_TEXT);
+            mTextViewPlayer2.setText(namePlayer2);
+        }**/
 
 
     }
@@ -140,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mDiceTextView3.setBackgroundColor(0x00000fff);
                 }
                 break;
-            case R.id.buttonAddPlayer:
+             case R.id.buttonAddPlayer:
                 if(game.getPlayer1() == null){
                     String name = mEditText.getText().toString();
                     if(!name.equals("")) {
@@ -169,25 +203,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    //settings in action bar om naar second activity te gaan
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int menuItemThatWasSelected = item.getItemId();
-        if (menuItemThatWasSelected == R.id.action_settings){
-            Intent startIntent = new Intent(getApplicationContext(),SettingsActivity.class);
-            startActivity(startIntent);
-        }
-        if (menuItemThatWasSelected == R.id.action_search){
-            Context context = MainActivity.this;
-            String message = "search clicked";
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

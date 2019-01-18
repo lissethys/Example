@@ -16,17 +16,43 @@
         android:gravity="center">
 
         <EditText
-            android:id="@+id/et_player"
+            android:id="@+id/name_player_1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp" />
+
+        <EditText
+            android:id="@+id/name_player_2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="70dp" />
 
         <Button
             android:id="@+id/buttonAddPlayer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="Add player"
+            android:layout_marginTop="120dp"
+            android:text="Add players"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView_player1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="150dp"
+            android:layout_marginTop="2000dp"
+            android:text=""
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView_player2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="150dp"
+            android:layout_marginTop="250dp"
+            android:text=""
             android:textSize="20dp" />
 
     </FrameLayout>

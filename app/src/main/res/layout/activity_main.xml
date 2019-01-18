@@ -17,6 +17,19 @@
         android:gravity="center">
 
 
+        <EditText
+            android:id="@+id/et_player"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:id="@+id/buttonAddPlayer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:text="Add player"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textView_turnTo1"
@@ -168,25 +181,22 @@
 
         <Button
             android:id="@+id/button2"
-            android:layout_width="match_parent"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="450dp"
             android:text="pass"
             android:textSize="20dp" />
 
-        <EditText
-            android:id="@+id/et_player"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp" />
-
         <Button
-            android:id="@+id/buttonAddPlayer"
-            android:layout_width="match_parent"
+            android:id="@+id/btnAddPlayers"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="Add player"
+            android:layout_marginTop="450dp"
+            android:layout_marginLeft="180dp"
+            android:text="Add players"
             android:textSize="20dp" />
+
+
 
 
 
