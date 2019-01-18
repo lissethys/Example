@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
         android:layout_width="match_parent"
@@ -14,6 +15,8 @@
         android:paddingRight="16dp"
         android:orientation="vertical"
         android:gravity="center">
+
+
 
         <TextView
             android:id="@+id/textView_turnTo1"
@@ -24,6 +27,7 @@
             android:layout_marginTop="150dp"
             android:text=""
             android:textSize="20dp" />
+
 
         <TextView
             android:id="@+id/textView_player1"
@@ -167,8 +171,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="450dp"
-            android:textSize="20dp"
-            android:text="pass" />
+            android:text="pass"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/et_player"
@@ -183,6 +187,7 @@
             android:layout_marginTop="70dp"
             android:text="Add player"
             android:textSize="20dp" />
+
 
 
     </FrameLayout>

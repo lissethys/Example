@@ -1,17 +1,16 @@
 package com.example.lissethys.myapplication;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Paint;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.ArrayList;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Game game = new Game();
@@ -71,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDiceTextView1.setOnClickListener(this);
         mDiceTextView2.setOnClickListener(this);
         mDiceTextView3.setOnClickListener(this);
+
+
+
+
 
     }
 
@@ -164,5 +167,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+    //settings in action bar om naar second activity te gaan
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int menuItemThatWasSelected = item.getItemId();
+        if (menuItemThatWasSelected == R.id.action_settings){
+            Intent startIntent = new Intent(getApplicationContext(),SettingsActivity.class);
+            startActivity(startIntent);
+        }
+        if (menuItemThatWasSelected == R.id.action_search){
+            Context context = MainActivity.this;
+            String message = "search clicked";
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
