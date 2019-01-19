@@ -1,15 +1,13 @@
 package com.example.lissethys.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
 
     Game game = new Game();
 
@@ -21,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_second);
 
 
         mNamePlayer1 = findViewById(R.id.name_player_1);
@@ -38,7 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String namePlayer1 = mNamePlayer1.getText().toString();
                 String namePlayer2 = mNamePlayer2.getText().toString();
-                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                Intent intent = new Intent(SecondActivity.this, MainActivity.class);
                 intent.putExtra("player1", namePlayer1);
                 intent.putExtra("player2", namePlayer2);
                 startActivity(intent);

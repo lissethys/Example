@@ -2,16 +2,13 @@ package com.example.lissethys.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.view.View.OnClickListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -39,6 +36,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button mBtnAddPlayers;
 
+    private String namePlayer1;
+    private String namePlayer2;
+
+    private Button mBtnnRules;
+
+    private Button mBtnGoToFirebase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,66 +64,104 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTextViewWinner = findViewById(R.id.textView_winner);
 
 
-        mEditText = findViewById(R.id.et_player);
+        //mEditText = findViewById(R.id.et_player);
 
 
         mButtonRoll = findViewById(R.id.button_roll);
         mButtonPass = findViewById(R.id.button_pass);
-        mButtonAddPlayers = findViewById(R.id.buttonAddPlayer);
+        //mButtonAddPlayers = findViewById(R.id.buttonAddPlayer);
 
         mBtnAddPlayers = findViewById(R.id.btnAddPlayers);
+
+        mBtnnRules = findViewById(R.id.button_rules);
+
+        mBtnGoToFirebase = findViewById(R.id.button_go_to_Firebase);
 
         /*die boys hier onder mij worden gewoon allemaal verwezen naar de onClick methode en daar wordt het juiste uitgevoerd naar gelang welke knop. (door de switch met dan R.id.(iets)**/
         mButtonRoll.setOnClickListener(this);
         mButtonPass.setOnClickListener(this);
-        mButtonAddPlayers.setOnClickListener(this);
+        //mButtonAddPlayers.setOnClickListener(this);
         mDiceTextView1.setOnClickListener(this);
         mDiceTextView2.setOnClickListener(this);
         mDiceTextView3.setOnClickListener(this);
 
         //Expliciete intent om naar tweede activity te gaan
 
-        mBtnAddPlayers.setOnClickListener(new OnClickListener() {
+        mBtnAddPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context = MainActivity.this;
-                Class destinationActivity = SettingsActivity.class;
+                Class destinationActivity = SecondActivity.class;
                 Intent startIntent = new Intent(context, destinationActivity);
                 startActivity(startIntent);
             }
         });
 
+        mBtnnRules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String wiki = "https://nl.wikipedia.org/wiki/Pietjesbak";
+                Uri webaddress = Uri.parse(wiki);
+
+                Intent wikiIntent = new Intent(Intent.ACTION_VIEW, webaddress);
+                if(wikiIntent.resolveActivity(getPackageManager()) != null){
+                    startActivity(wikiIntent);
+                }
+
+            }
+        });
+
+
+
         //Intent om data te halen uit de data van de tweede activity
 
         Intent intent = getIntent();
-        String namePlayer1 = intent.getStringExtra("player1");
-        String namePlayer2 = intent.getStringExtra("player2");
+        namePlayer1 = intent.getStringExtra("player1");
+        namePlayer2 = intent.getStringExtra("player2");
+        if(namePlayer1 != null || namePlayer2 != null){
+            game.setPlayer1(new Player(namePlayer1));
+            game.setPlayer2(new Player(namePlayer2));
+        }
         mTextViewPlayer1.setText(namePlayer1);
         mTextViewPlayer2.setText(namePlayer2);
+
+        mBtnGoToFirebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent data = new Intent(MainActivity.this, DatabaseActivity.class);
+                startActivity(data);
+            }
+        });
 
 
 
     }
 
-    /* Ja android bucht he lisse. basic want ik kon het op 1 dag ;)**/
+    //werking spel
     @Override
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.button_roll:
+                //als namen van beide spelers niet null zijn begint de functie roll() bij het drukken op de roll btn
                 if(game.getPlayer1() != null && game.getPlayer2() != null) {
                     game.roll();
+                    //de verworven scores worden ingegeven in de voorziene textviews
                     mTextViewScore1.setText(game.getPlayer1().getDisplayScore());
                     mTextViewScore2.setText(game.getPlayer2().getDisplayScore());
+                    //bij de speler die wint zal er een punt/turf afgaan
                     mTextViewPoints1.setText("" + game.getPlayer1().getTurf());
                     mTextViewPoints2.setText("" + game.getPlayer2().getTurf());
+                    //als de dices niet vastgelegd zijn zal de achtergrond kleur wit zijn
                     if (!game.getDice1().isStuck()) mDiceTextView1.setBackgroundColor(0x00000fff);
                     if (!game.getDice2().isStuck()) mDiceTextView2.setBackgroundColor(0x00000fff);
                     if (!game.getDice3().isStuck()) mDiceTextView3.setBackgroundColor(0x00000fff);
 
 
+                    //als er een winnaar is zal de naam worden weergegeven in de voorziene textview
                     if (game.getWinner() != null)
-                        mTextViewWinner.setText(game.getWinner().getName());
+                        mTextViewWinner.setText("the winner is " + game.getWinner().getName());
 
+                    //geeft aan wie aan de beurt is
                     mTextViewTurn.setText("Turn: " + game.getTurn());
                     if (game.getPlayer1().isTurn()) {
                         mTextViewTurnTo1.setText("T");
@@ -129,17 +171,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         mTextViewTurnTo2.setText("T");
                     }
 
+                    //weergeeft de getallen van iedere dice
                     mDiceTextView1.setText("" + game.getDice1().getDice());
                     mDiceTextView2.setText("" + game.getDice2().getDice());
                     mDiceTextView3.setText("" + game.getDice3().getDice());
                 }else{
+                    //als er nog geen namen ingegeven zijn verschijnt er volgende tekst
                     mTextViewWinner.setText("Add 2 players first");
                 }
                 break;
             case R.id.button_pass:
-
                 mTextViewWinner.setText("pass");
                 break;
+                //veranderen van achtergrondkleur dices bij het vastleggen
             case R.id.dice_1:
                 game.getDice1().changeStuck();
                 if(game.getDice1().isStuck()){
@@ -164,7 +208,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     mDiceTextView3.setBackgroundColor(0x00000fff);
                 }
                 break;
-             case R.id.buttonAddPlayer:
+                //hoe kan ik dit veranderen naar de SecondActivity
+             /*case R.id.buttonAddPlayer:
                 if(game.getPlayer1() == null){
                     String name = mEditText.getText().toString();
                     if(!name.equals("")) {
@@ -187,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         mTextViewWinner.setText(("No valid name"));
                     }
                 }
-                break;
+                break;**/
             default:
                 break;
         }

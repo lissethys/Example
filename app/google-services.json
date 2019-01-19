@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "545499615531",
+    "firebase_url": "https://pietjesbak-eaf13.firebaseio.com",
+    "project_id": "pietjesbak-eaf13",
+    "storage_bucket": "pietjesbak-eaf13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545499615531:android:712eba4eba8e7d31",
+        "android_client_info": {
+          "package_name": "com.example.lissethys.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545499615531-0cku29l9q7t3l6qh18msntp0fl2su6a0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lissethys.myapplication",
+            "certificate_hash": "e8eed33e5901366963c73bdb883265ca56504f15"
+          }
+        },
+        {
+          "client_id": "545499615531-90s70rmse3ji67d5hdlk056l7u8m0h49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFkHJPH_W0-7okleB-VZ_evmEsZ2jb1Ls"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545499615531-90s70rmse3ji67d5hdlk056l7u8m0h49.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
