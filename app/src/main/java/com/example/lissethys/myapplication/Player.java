@@ -7,6 +7,7 @@ public class Player {
     private int compareScore;
     private int turf = 5;
 
+    //spelers de ingeven naam toewijzen in leaderboard en returnen
     public Player(String name){
         this.setName(name);
     }
@@ -14,13 +15,14 @@ public class Player {
         return name;
     }
 
-    /* ja niemand wilt/mag toch          noemen ? of nie ?**/
+    //als er nog geen namen zijn toegevoegd
     public void setName(String name) {
         if(name != null || name.trim().isEmpty()){
-            this.name = name;
+            this.name = name;//wrm dit?
         }
     }
 
+    //snap ik niet...
     public boolean isTurn() {
         return turn;
     }
@@ -65,11 +67,11 @@ public class Player {
 
     /* methode setCompareScore om een oud vlaams spel te kunnen doen werken op een pc moest het zo. pareltje van inventiviteit**/
     public void setCompareScore(int compareScore) {
-        this.compareScore = compareScore;
+        this.compareScore = compareScore; //dus ge haalt hier de scores voor de compareScore uit de setDisplayScore functie om die dan terug in de setDsiplayScore functie te steken?
         setDisplayScore(compareScore);
     }
 
-    /* Moet ik hier uitleg bij geven.... lisse thys...**/
+    /* Moet ik hier uitleg bij geven.... lisse thys...nee...alhoewel...wnnr weet da da het moet verminderen?**/
     public void decreaseTurf(){
         turf--;
     }
