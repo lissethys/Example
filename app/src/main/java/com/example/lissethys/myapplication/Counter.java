@@ -25,7 +25,7 @@ public class Counter {
                     score = 295;
                     break;
                 case 6:
-                    score = 180;
+                    score = 180; //wrm 180? Is zand van 6 niet hoger dan zand van 5?
                     break;
                 default:
                     break;
